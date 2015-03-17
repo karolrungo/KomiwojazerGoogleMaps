@@ -1,6 +1,9 @@
-﻿<Window x:Class="KomiwojazerGoogleMaps.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid/>
+        xmlns:WindowsPresentation="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation" x:Class="KomiwojazerGoogleMaps.MainWindow"
+        Title="MainWindow" Height="441" Width="850" Loaded="Window_Loaded">
+    <Grid>
+        <WindowsPresentation:GMapControl x:Name="gmap" HorizontalAlignment="Left" Height="391" Margin="10,10,0,0" VerticalAlignment="Top" Width="822" MaxZoom="18" Zoom="10"/>
+    </Grid>
 </Window>
