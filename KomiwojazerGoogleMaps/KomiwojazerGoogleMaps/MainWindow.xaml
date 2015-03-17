@@ -2,8 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:WindowsPresentation="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation" x:Class="KomiwojazerGoogleMaps.MainWindow"
-        Title="MainWindow" Height="441" Width="850" Loaded="Window_Loaded">
+        Title="MainWindow" Height="613.1" Width="852" Loaded="Window_Loaded">
     <Grid>
         <WindowsPresentation:GMapControl x:Name="gmap" HorizontalAlignment="Left" Height="391" Margin="10,10,0,0" VerticalAlignment="Top" Width="822" MaxZoom="18" Zoom="10"/>
+        <DataGrid x:Name="dataGridUsers" HorizontalAlignment="Left" Margin="14,410,0,0" VerticalAlignment="Top" Height="150" Width="805"/>
     </Grid>
 </Window>

@@ -22,8 +22,11 @@ namespace KomiwojazerGoogleMaps
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Database.LinqDatabaseConnector databaseConnector;
+
         public MainWindow()
         {
+            databaseConnector = new Database.LinqDatabaseConnector();
             InitializeComponent();
         }
 
@@ -46,6 +49,9 @@ namespace KomiwojazerGoogleMaps
             GMapRoute mRoute = new GMapRoute(route.Points);
             gmap.Markers.Add(mRoute);
             gmap.ZoomAndCenterMarkers(null);
+
+
+            dataGridUsers.ItemsSource = databaseConnector.selectAllUsers();
         }
     }
 }
