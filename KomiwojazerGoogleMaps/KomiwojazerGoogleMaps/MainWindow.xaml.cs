@@ -23,6 +23,7 @@ namespace KomiwojazerGoogleMaps
     public partial class MainWindow : Window
     {
         private Database.LinqDatabaseConnector databaseConnector;
+        private Classes.UserLoginManager userLoginManager;
 
         public MainWindow()
         {
@@ -53,5 +54,20 @@ namespace KomiwojazerGoogleMaps
 
             dataGridUsers.ItemsSource = databaseConnector.selectAllUsers();
         }
+
+        private void buttonInfo_Click(object sender, RoutedEventArgs e)
+        {
+            Classes.InfoMessageProvider.showInfoMessage();
+        }
+
+        private void buttonLogin_Click(object sender, RoutedEventArgs e)
+        {
+            userLoginManager = new Classes.UserLoginManager(textBoxUsername.Text,
+                                                            textBoxPassword.Text,
+                                                            checkBoxIsAdmin.IsChecked.HasValue);
+            userLoginManager.logUserToMainMenu();
+        }
+                                                            
+
     }
 }
