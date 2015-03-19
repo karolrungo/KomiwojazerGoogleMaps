@@ -60,6 +60,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\BtsFinder.cs" />
+    <Compile Include="DataTypes\BtsInfo.cs" />
+    <Compile Include="Windows\BtsSettingsWindow.xaml.cs">
+      <DependentUpon>BtsSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainMenuWindow.xaml.cs">
+      <DependentUpon>MainMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\RoutePlanningWindow.xaml.cs">
+      <DependentUpon>RoutePlanningWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WorkersSettingsWindow.xaml.cs">
+      <DependentUpon>WorkersSettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,6 +97,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\BtsSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RoutePlanningWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WorkersSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -124,7 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Algorithm\" />
-    <Folder Include="Windows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -22,6 +22,7 @@ namespace KomiwojazerGoogleMaps
     {
         private Database.LinqDatabaseConnector databaseConnector;
         private Classes.UserLoginManager userLoginManager;
+        private Windows.MainMenuWindow mainMenu;
 
         public MainWindow()
         {
@@ -31,12 +32,21 @@ namespace KomiwojazerGoogleMaps
 
         private void userLoginManager_loginSusses(object sender, Classes.LoginEventArgs e)
         {
-            MessageBox.Show("succes Admin? " + e.isAdmin);
+            mainMenu = new Windows.MainMenuWindow(e.isAdmin);
+            mainMenu.Show();
+            mainMenu.showLoginWindow += mainMenu_showLoginWindow;
+
+            this.Hide();
+        }
+
+        private void mainMenu_showLoginWindow(object sender, EventArgs e)
+        {
+            this.Show();
         }
 
         private void userLoginManager_loginFailed(object sender, Classes.LoginEventArgs e)
         {
-            MessageBox.Show("fail");
+            MessageBox.Show("Login failed");
         }
 
         private void buttonInfo_Click(object sender, RoutedEventArgs e)

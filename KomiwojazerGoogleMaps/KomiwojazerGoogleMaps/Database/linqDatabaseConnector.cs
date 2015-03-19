@@ -20,6 +20,11 @@ namespace KomiwojazerGoogleMaps.Database
             return dataContext.Peoples.Select(user => user);
         }
 
+        public IQueryable<Bt> selectAllBts()
+        {
+            return dataContext.Bts.Select(x => x);
+        }
+
         internal bool userExists(string username, string password, bool isAdmin)
         {
             return (from c in dataContext.Peoples 
@@ -27,6 +32,23 @@ namespace KomiwojazerGoogleMaps.Database
                           c.password == password &&
                           c.isAdmin == isAdmin
                     select c).Any();
+        }
+
+        internal void deleteBTS()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void addBts(string city, string location, float latitude, float longitude)
+        {
+            Database.Bt bts= new Bt();
+            bts.city = city;
+            bts.cityGoogleString = location;
+            bts.latitude = latitude;
+            bts.longtitude = longitude;
+
+            dataContext.Bts.InsertOnSubmit(bts);
+            dataContext.SubmitChanges();
         }
     }
 }
