@@ -1,11 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="KomiwojazerGMap" Class="DatabaseContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=KAROL-KOMPUTER;Initial Catalog=KomiwojazerGMap;Integrated Security=True" SettingsObjectName="KomiwojazerGoogleMaps.Properties.Settings" SettingsPropertyName="KomiwojazerGMapConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GoogleMaps" Class="DatabaseContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=KAROL-KOMPUTER;Initial Catalog=GoogleMaps;Integrated Security=True" SettingsObjectName="KomiwojazerGoogleMaps.Properties.Settings" SettingsPropertyName="GoogleMapsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.People" Member="Peoples">
+    <Type Name="People">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="isAdmin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bts" Member="Bts">
+    <Type Name="Bt">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="city" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="cityGoogleString" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longtitude" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

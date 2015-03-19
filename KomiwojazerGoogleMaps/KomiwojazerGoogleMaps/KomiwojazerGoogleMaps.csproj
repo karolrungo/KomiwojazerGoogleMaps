@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Database\LinqDatabaseConnector.cs" />
     <Compile Include="DataTypes\UserData.cs" />
+    <Compile Include="Classes\LoginEventArgs.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

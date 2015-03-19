@@ -33,5 +33,15 @@ namespace KomiwojazerGoogleMaps.Properties {
                 return ((string)(this["KomiwojazerGMapConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=KAROL-KOMPUTER;Initial Catalog=GoogleMaps;Integrated Security=True")]
+        public string GoogleMapsConnectionString {
+            get {
+                return ((string)(this["GoogleMapsConnectionString"]));
+            }
+        }
     }
 }

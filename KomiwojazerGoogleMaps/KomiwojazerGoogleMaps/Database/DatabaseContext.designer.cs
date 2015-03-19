@@ -22,7 +22,7 @@ namespace KomiwojazerGoogleMaps.Database
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="KomiwojazerGMap")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="GoogleMaps")]
 	public partial class DatabaseContextDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,13 +30,16 @@ namespace KomiwojazerGoogleMaps.Database
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
+    partial void InsertPeople(People instance);
+    partial void UpdatePeople(People instance);
+    partial void DeletePeople(People instance);
+    partial void InsertBt(Bt instance);
+    partial void UpdateBt(Bt instance);
+    partial void DeleteBt(Bt instance);
     #endregion
 		
 		public DatabaseContextDataContext() : 
-				base(global::KomiwojazerGoogleMaps.Properties.Settings.Default.KomiwojazerGMapConnectionString, mappingSource)
+				base(global::KomiwojazerGoogleMaps.Properties.Settings.Default.GoogleMapsConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -65,17 +68,25 @@ namespace KomiwojazerGoogleMaps.Database
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<User> Users
+		public System.Data.Linq.Table<People> Peoples
 		{
 			get
 			{
-				return this.GetTable<User>();
+				return this.GetTable<People>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Bt> Bts
+		{
+			get
+			{
+				return this.GetTable<Bt>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.People")]
+	public partial class People : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -102,7 +113,7 @@ namespace KomiwojazerGoogleMaps.Database
     partial void OnisAdminChanged();
     #endregion
 		
-		public User()
+		public People()
 		{
 			OnCreated();
 		}
@@ -183,6 +194,164 @@ namespace KomiwojazerGoogleMaps.Database
 					this._isAdmin = value;
 					this.SendPropertyChanged("isAdmin");
 					this.OnisAdminChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bts")]
+	public partial class Bt : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _city;
+		
+		private string _cityGoogleString;
+		
+		private System.Nullable<double> _latitude;
+		
+		private System.Nullable<double> _longtitude;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OncityChanging(string value);
+    partial void OncityChanged();
+    partial void OncityGoogleStringChanging(string value);
+    partial void OncityGoogleStringChanged();
+    partial void OnlatitudeChanging(System.Nullable<double> value);
+    partial void OnlatitudeChanged();
+    partial void OnlongtitudeChanging(System.Nullable<double> value);
+    partial void OnlongtitudeChanged();
+    #endregion
+		
+		public Bt()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city", DbType="NVarChar(50)")]
+		public string city
+		{
+			get
+			{
+				return this._city;
+			}
+			set
+			{
+				if ((this._city != value))
+				{
+					this.OncityChanging(value);
+					this.SendPropertyChanging();
+					this._city = value;
+					this.SendPropertyChanged("city");
+					this.OncityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cityGoogleString", DbType="NVarChar(100)")]
+		public string cityGoogleString
+		{
+			get
+			{
+				return this._cityGoogleString;
+			}
+			set
+			{
+				if ((this._cityGoogleString != value))
+				{
+					this.OncityGoogleStringChanging(value);
+					this.SendPropertyChanging();
+					this._cityGoogleString = value;
+					this.SendPropertyChanged("cityGoogleString");
+					this.OncityGoogleStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_latitude", DbType="Float")]
+		public System.Nullable<double> latitude
+		{
+			get
+			{
+				return this._latitude;
+			}
+			set
+			{
+				if ((this._latitude != value))
+				{
+					this.OnlatitudeChanging(value);
+					this.SendPropertyChanging();
+					this._latitude = value;
+					this.SendPropertyChanged("latitude");
+					this.OnlatitudeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_longtitude", DbType="Float")]
+		public System.Nullable<double> longtitude
+		{
+			get
+			{
+				return this._longtitude;
+			}
+			set
+			{
+				if ((this._longtitude != value))
+				{
+					this.OnlongtitudeChanging(value);
+					this.SendPropertyChanging();
+					this._longtitude = value;
+					this.SendPropertyChanged("longtitude");
+					this.OnlongtitudeChanged();
 				}
 			}
 		}

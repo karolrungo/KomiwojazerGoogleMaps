@@ -1,6 +1,4 @@
-﻿using GMap.NET;
-using GMap.NET.WindowsPresentation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,28 +29,14 @@ namespace KomiwojazerGoogleMaps
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void userLoginManager_loginSusses(object sender, Classes.LoginEventArgs e)
         {
-            // Initialize map:
-            gmap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
-            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
-            //gmap.Position = new PointLatLng(-25.971684, 32.589759);
-            gmap.SetPositionByKeywords("Wołów, Poland");
+            MessageBox.Show("succes Admin? " + e.isAdmin);
+        }
 
-            PointLatLng start = new PointLatLng(51.110, 17.030);
-            PointLatLng end = new PointLatLng(52.259, 21.020);
-
-            RoutingProvider rp = gmap.MapProvider as RoutingProvider;
-            MapRoute route = rp.GetRoute(start, end, false, false, (int)gmap.Zoom);
-
-            GMapMarker m1 = new GMapMarker(start);
-            GMapMarker m2 = new GMapMarker(end);
-            GMapRoute mRoute = new GMapRoute(route.Points);
-            gmap.Markers.Add(mRoute);
-            gmap.ZoomAndCenterMarkers(null);
-
-
-            dataGridUsers.ItemsSource = databaseConnector.selectAllUsers();
+        private void userLoginManager_loginFailed(object sender, Classes.LoginEventArgs e)
+        {
+            MessageBox.Show("fail");
         }
 
         private void buttonInfo_Click(object sender, RoutedEventArgs e)
@@ -64,10 +48,17 @@ namespace KomiwojazerGoogleMaps
         {
             userLoginManager = new Classes.UserLoginManager(textBoxUsername.Text,
                                                             textBoxPassword.Text,
-                                                            checkBoxIsAdmin.IsChecked.HasValue);
-            userLoginManager.logUserToMainMenu();
-        }
-                                                            
-
+                                                            checkBoxIsAdmin.IsChecked.Value);
+            try
+            {
+                userLoginManager.loginFailed += userLoginManager_loginFailed;
+                userLoginManager.loginSusses += userLoginManager_loginSusses;
+                userLoginManager.logUserToMainMenu();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }                                        
     }
 }

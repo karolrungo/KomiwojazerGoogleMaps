@@ -15,9 +15,18 @@ namespace KomiwojazerGoogleMaps.Database
             dataContext = new DatabaseContextDataContext();
         }
 
-        public IQueryable<User> selectAllUsers()
+        public IQueryable<People> selectAllUsers()
         {
-            return dataContext.Users.Select(user => user);
+            return dataContext.Peoples.Select(user => user);
+        }
+
+        internal bool userExists(string username, string password, bool isAdmin)
+        {
+            return (from c in dataContext.Peoples 
+                    where c.username == username &&
+                          c.password == password &&
+                          c.isAdmin == isAdmin
+                    select c).Any();
         }
     }
 }
