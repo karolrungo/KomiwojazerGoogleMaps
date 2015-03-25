@@ -25,7 +25,7 @@ namespace KomiwojazerGoogleMaps.Database
             return dataContext.Bts.Select(x => x);
         }
 
-        internal bool userExists(string username, string password, bool isAdmin)
+        public bool userExists(string username, string password, bool isAdmin)
         {
             return (from c in dataContext.Peoples 
                     where c.username == username &&
@@ -34,17 +34,7 @@ namespace KomiwojazerGoogleMaps.Database
                     select c).Any();
         }
 
-        public void deleteBTS(string location)
-        {
-            var itemToRemove = (from c in dataContext.Bts
-                                where c.cityGoogleString == location
-                                select c).First();
-
-           dataContext.Bts.DeleteOnSubmit(itemToRemove);
-           dataContext.SubmitChanges();    
-        }
-
-        internal void addBts(string city, string location, float latitude, float longitude)
+        public void addBts(string city, string location, float latitude, float longitude)
         {
             Database.Bt bts= new Bt();
             bts.city = city;
@@ -52,14 +42,48 @@ namespace KomiwojazerGoogleMaps.Database
             bts.latitude = latitude;
             bts.longtitude = longitude;
 
-            if (isBtsAlreadyInDatabase(location, latitude, longitude))
+            if (btsNotInDatabase(location, latitude, longitude))
             {
                 dataContext.Bts.InsertOnSubmit(bts);
                 dataContext.SubmitChanges();
             }
         }
 
-        private bool isBtsAlreadyInDatabase(string location, float latitude, float longitude)
+        public void deleteBTS(string location)
+        {
+            var itemToRemove = (from c in dataContext.Bts
+                                where c.cityGoogleString == location
+                                select c).First();
+
+            dataContext.Bts.DeleteOnSubmit(itemToRemove);
+            dataContext.SubmitChanges();
+        }
+
+        public void addUser(string login, string password, bool isAdmin)
+        {
+            Database.People user = new People();
+            user.username = login;
+            user.password = password;
+            user.isAdmin = isAdmin;
+
+            if (userNotInDatabase(login))
+            {
+                dataContext.Peoples.InsertOnSubmit(user);
+                dataContext.SubmitChanges();
+            }
+        }
+
+        public void deleteUser(string login)
+        {
+            var itemToRemove = (from c in dataContext.Peoples
+                                where c.username == login
+                                select c).First();
+
+            dataContext.Peoples.DeleteOnSubmit(itemToRemove);
+            dataContext.SubmitChanges();
+        }
+
+        private bool btsNotInDatabase(string location, float latitude, float longitude)
         {
             var query = from c in dataContext.Bts
                         where c.cityGoogleString == location &&
@@ -69,7 +93,23 @@ namespace KomiwojazerGoogleMaps.Database
 
             if (query.Any())
             {
-                throw new Exception("This location ius already in database");
+                throw new Exception("This location is already in database");
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool userNotInDatabase(string login)
+        {
+            var query = from c in dataContext.Peoples
+                        where c.username == login
+                        select c;
+
+            if (query.Any())
+            {
+                throw new Exception("Login already exists in database");
             }
             else
             {

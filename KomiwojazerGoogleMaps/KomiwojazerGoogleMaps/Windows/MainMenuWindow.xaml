@@ -5,7 +5,7 @@
     <Grid>
         <Button x:Name="buttonAddBTS" Content="BTS Settings" HorizontalAlignment="Left" Margin="47,43,0,0" VerticalAlignment="Top" Width="104" Height="55" Click="buttonAddBTS_Click" RenderTransformOrigin="0.5,2.055"/>
         <Button x:Name="buttonRoutePlanning" Content="Route planning" HorizontalAlignment="Left" Margin="187,43,0,0" VerticalAlignment="Top" Width="104" Height="55" Click="buttonRoutePlanning_Click" RenderTransformOrigin="0.5,2.055"/>
-        <Button x:Name="buttonAddPeople" Content="Add workers to database" HorizontalAlignment="Left" Margin="47,120,0,0" VerticalAlignment="Top" Width="104" Height="57" Click="buttonAddWorkers_Click" RenderTransformOrigin="0.5,2.055"/>
+        <Button x:Name="buttonAddPeople" Content="Add workers &#xD;&#xA;to database" HorizontalAlignment="Left" Margin="47,120,0,0" VerticalAlignment="Top" Width="104" Height="57" Click="buttonAddWorkers_Click" RenderTransformOrigin="0.5,2.055"/>
 
     </Grid>
 </Window>

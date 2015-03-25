@@ -29,6 +29,11 @@ namespace KomiwojazerGoogleMaps.Windows
         public MainMenuWindow(bool adminMode)
         {
             InitializeComponent();
+            blockButtonsIfNotAdminNotLogged(adminMode);
+        }
+
+        private void blockButtonsIfNotAdminNotLogged(bool adminMode)
+        {
             if (!adminMode)
             {
                 buttonAddBTS.IsEnabled = false;
@@ -49,7 +54,8 @@ namespace KomiwojazerGoogleMaps.Windows
 
         private void buttonAddWorkers_Click(object sender, RoutedEventArgs e)
         {
-
+            Windows.WorkersSettingsWindow workersSettingsWindow = new WorkersSettingsWindow();
+            workersSettingsWindow.Show();
         }
 
         private void Window_Closed(object sender, EventArgs e)

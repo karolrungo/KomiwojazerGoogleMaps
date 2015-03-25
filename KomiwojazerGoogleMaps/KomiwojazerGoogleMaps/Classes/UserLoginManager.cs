@@ -51,11 +51,16 @@ namespace KomiwojazerGoogleMaps.Classes
             }
         }
 
-        private void validateUserData()
+        public void validateUserData()
         {
             if (userData.Username.Contains(" ") || userData.Username.Contains("\t"))
             {
                 throw new LoginHasWhitespaces("ERROR!!! Login has whitespaces!");
+            }
+
+            if (userData.Password.Contains(" ") || userData.Password.Contains("\t"))
+            {
+                throw new LoginHasWhitespaces("ERROR!!! Password has whitespaces!");
             }
         }
     }
