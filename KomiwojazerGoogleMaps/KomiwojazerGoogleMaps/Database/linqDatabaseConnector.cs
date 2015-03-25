@@ -52,17 +52,19 @@ namespace KomiwojazerGoogleMaps.Database
             bts.latitude = latitude;
             bts.longtitude = longitude;
 
-            if (isBtsAlreadyInDatabase(location))
+            if (isBtsAlreadyInDatabase(location, latitude, longitude))
             {
                 dataContext.Bts.InsertOnSubmit(bts);
                 dataContext.SubmitChanges();
             }
         }
 
-        private bool isBtsAlreadyInDatabase(string location)
+        private bool isBtsAlreadyInDatabase(string location, float latitude, float longitude)
         {
             var query = from c in dataContext.Bts
-                        where c.cityGoogleString == location
+                        where c.cityGoogleString == location &&
+                              c.longtitude == longitude &&
+                              c.latitude == latitude
                         select c;
 
             if (query.Any())

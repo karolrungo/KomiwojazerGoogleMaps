@@ -102,13 +102,13 @@ namespace KomiwojazerGoogleMaps.Windows
         {
             if (onlyOneRowSelected(dataGridBTSidDatabase))
             {
-                DataRowView drv = (DataRowView)dataGridBTSidDatabase.SelectedItem;
+                Database.Bt drv = (Database.Bt)dataGridBTSidDatabase.SelectedItem;
 
                 Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-GB");
-                string city = (drv["city"]).ToString();
-                string location = (drv["cityGoogleString"]).ToString();
-                float latitude = float.Parse((drv["latitude"]).ToString());
-                float longitude = float.Parse((drv["longitude"]).ToString());
+                string city = drv.city;
+                string location = drv.cityGoogleString;
+                float latitude = (float)drv.latitude;
+                float longitude = (float)drv.longtitude;
 
                 return new DataTypes.BtsInfo(city,
                                              location,
