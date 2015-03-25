@@ -34,9 +34,14 @@ namespace KomiwojazerGoogleMaps.Database
                     select c).Any();
         }
 
-        internal void deleteBTS()
+        public void deleteBTS(string location)
         {
-            throw new NotImplementedException();
+            var itemToRemove = (from c in dataContext.Bts
+                                where c.cityGoogleString == location
+                                select c).First();
+
+           dataContext.Bts.DeleteOnSubmit(itemToRemove);
+           dataContext.SubmitChanges();    
         }
 
         internal void addBts(string city, string location, float latitude, float longitude)
@@ -47,8 +52,27 @@ namespace KomiwojazerGoogleMaps.Database
             bts.latitude = latitude;
             bts.longtitude = longitude;
 
-            dataContext.Bts.InsertOnSubmit(bts);
-            dataContext.SubmitChanges();
+            if (isBtsAlreadyInDatabase(location))
+            {
+                dataContext.Bts.InsertOnSubmit(bts);
+                dataContext.SubmitChanges();
+            }
+        }
+
+        private bool isBtsAlreadyInDatabase(string location)
+        {
+            var query = from c in dataContext.Bts
+                        where c.cityGoogleString == location
+                        select c;
+
+            if (query.Any())
+            {
+                throw new Exception("This location ius already in database");
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

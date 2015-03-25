@@ -37,14 +37,23 @@ namespace KomiwojazerGoogleMaps.Windows
 
         private void buttonDeleteBTS_Click(object sender, RoutedEventArgs e)
         {
-            databaseConnector.deleteBTS();
+            try
+            {
+                DataTypes.BtsInfo btsInfo = getBtsInfoFromSelectedRowInDataGridBtsInDatabase();
+                databaseConnector.deleteBTS(btsInfo.Location);
+                refreshDatabaseBtsDataGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonAddBTS_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                DataTypes.BtsInfo btsInfo = getBtsInfoFromSelectedRowInDataGrid();
+                DataTypes.BtsInfo btsInfo = getBtsInfoFromSelectedRowInDataGridLocations();
                 databaseConnector.addBts(btsInfo.City,
                                          btsInfo.Location,
                                          btsInfo.Latitude,
@@ -67,7 +76,7 @@ namespace KomiwojazerGoogleMaps.Windows
             return dataGrid.SelectedItems.Count == 1 ? true : false;
         }
 
-        private DataTypes.BtsInfo getBtsInfoFromSelectedRowInDataGrid()
+        private DataTypes.BtsInfo getBtsInfoFromSelectedRowInDataGridLocations()
         {
             if (onlyOneRowSelected(dataGridFoundBTS))
             {
@@ -79,6 +88,29 @@ namespace KomiwojazerGoogleMaps.Windows
                 float longitude = float.Parse((drv["Longitude"]).ToString());
 
                 return new DataTypes.BtsInfo(textBoxCity.Text,
+                                             location,
+                                             latitude,
+                                             longitude);
+            }
+            else
+            {
+                throw new Exception("Only one row can be selected!");
+            }
+        }
+
+        private DataTypes.BtsInfo getBtsInfoFromSelectedRowInDataGridBtsInDatabase()
+        {
+            if (onlyOneRowSelected(dataGridBTSidDatabase))
+            {
+                DataRowView drv = (DataRowView)dataGridBTSidDatabase.SelectedItem;
+
+                Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-GB");
+                string city = (drv["city"]).ToString();
+                string location = (drv["cityGoogleString"]).ToString();
+                float latitude = float.Parse((drv["latitude"]).ToString());
+                float longitude = float.Parse((drv["longitude"]).ToString());
+
+                return new DataTypes.BtsInfo(city,
                                              location,
                                              latitude,
                                              longitude);
