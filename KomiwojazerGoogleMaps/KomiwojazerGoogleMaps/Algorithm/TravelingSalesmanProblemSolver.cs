@@ -19,12 +19,13 @@ namespace KomiwojazerGoogleMaps.Algorithm
         public List<int> getOptimalOrder()
         {
             //narazie optymalna kolejnoscia jest kolejnosc na liscie
-            return Enumerable.Range(0, btsList.Count-1).ToList();
+            return Enumerable.Range(0, btsList.Count).ToList();
         }
 
         public void Start()
         {
-           
+            //podpowiedz ;) funkcja rzuca wyjatkami
+            //Classes.BtsFinder.getDistanceBetweenLocations(start, end);
         }
     }
 }

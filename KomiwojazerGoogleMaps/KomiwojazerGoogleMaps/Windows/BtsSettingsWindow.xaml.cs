@@ -27,12 +27,15 @@ namespace KomiwojazerGoogleMaps.Windows
         {
             databaseConnector = new Database.LinqDatabaseConnector();
             InitializeComponent();
+
+            dataGridBTSidDatabase.IsReadOnly = true;
+            dataGridFoundBTS.IsReadOnly = true;
             refreshDatabaseBtsDataGrid();
         }
 
         private void buttonBTS_Search_Click(object sender, RoutedEventArgs e)
         {
-            dataGridFoundBTS.ItemsSource = Classes.BtsFinder.findAddressess(textBoxCity.Text).DefaultView;
+            dataGridFoundBTS.ItemsSource = Classes.BtsFinder.findLocations(textBoxCity.Text).DefaultView;
         }
 
         private void buttonDeleteBTS_Click(object sender, RoutedEventArgs e)

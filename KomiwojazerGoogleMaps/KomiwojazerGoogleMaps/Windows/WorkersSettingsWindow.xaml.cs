@@ -25,6 +25,7 @@ namespace KomiwojazerGoogleMaps.Windows
         {
             databaseConnector = new Database.LinqDatabaseConnector();
             InitializeComponent();
+            dataGridUsersInDatabase.IsReadOnly = true;
         }
 
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)

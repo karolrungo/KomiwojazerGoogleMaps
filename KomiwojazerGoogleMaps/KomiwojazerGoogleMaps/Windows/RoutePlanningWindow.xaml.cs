@@ -35,13 +35,16 @@ namespace KomiwojazerGoogleMaps.Windows
 
             btsList = new HashSet<Database.Bt>();
             databaseConnection = new Database.LinqDatabaseConnector();
+
+            dataGridBts.IsReadOnly = true;
+            dataGridList.IsReadOnly = true;
         }
 
         private PointLatLng getCoordinatesOfLocation(string location)
         {
             float longitude, latitude;
 
-            DataTable dt = Classes.BtsFinder.findAddressess(location);
+            DataTable dt = Classes.BtsFinder.findLocations(location);
             Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-GB");
             longitude = float.Parse(dt.Rows[0]["Longitude"].ToString());
             latitude = float.Parse(dt.Rows[0]["Latitude"].ToString());
@@ -63,15 +66,43 @@ namespace KomiwojazerGoogleMaps.Windows
         private void btnStartPlanning_Click(object sender, RoutedEventArgs e)
         {
             Algorithm.TravelingSalesmanProblemSolver solver = new Algorithm.TravelingSalesmanProblemSolver(btsList);
-            solver.Start();
-            visitOrder = solver.getOptimalOrder();
+            try
+            {
+                solver.Start();
+                visitOrder = solver.getOptimalOrder();
+                drawOptimalRouteOnMap();
+                MessageBox.Show(generateOptimalListString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private string generateOptimalListString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < btsList.Count; i++)
+            {
+                sb.Append(btsList.ElementAt(visitOrder[i]).cityGoogleString);
+                sb.Append(Environment.NewLine);
+            }
+
+            return sb.ToString();
         }
 
         private void buttonDeleteBtsFromList_Click(object sender, RoutedEventArgs e)
         {
             if (onlyOneRowSelected(dataGridList))
             {
- 
+                Database.Bt btsToRemove = (Database.Bt)dataGridList.SelectedItem;
+                btsList.Remove(btsToRemove);
+                updateDataGridList();
+            }
+            else
+            {
+                MessageBox.Show("Only one row can be selected!");
             }
         }
 
@@ -98,6 +129,55 @@ namespace KomiwojazerGoogleMaps.Windows
         private bool onlyOneRowSelected(DataGrid dataGrid)
         {
             return dataGrid.SelectedItems.Count == 1 ? true : false;
+        }
+
+        private void drawOptimalRouteOnMap()
+        {
+            if (btsList.Count != visitOrder.Count)
+            {
+                throw new Exception("Optimal path does not contain all locations");
+            }
+
+            clearMap();
+
+            Database.Bt start;
+            Database.Bt end;
+
+            for (int i = 0; i < btsList.Count-1; i++)
+            {
+                start = btsList.ElementAt(visitOrder[i]);
+                end = btsList.ElementAt(visitOrder[i+1]);
+                drawSingleRoute(start, end);
+            }
+        }
+
+        private void clearMap()
+        {
+            var clear = gmap.Markers.Where(p => p != null);
+            if (clear != null)
+            {
+                for (int i = 0; i < clear.Count(); i++)
+                {
+                    gmap.Markers.Remove(clear.ElementAt(i));
+                    i--;
+                }
+            }
+        }
+
+        private void drawSingleRoute(Database.Bt start, Database.Bt end)
+        {
+            PointLatLng startCords = new PointLatLng((double)start.latitude, (double)start.longtitude);
+            PointLatLng endCords = new PointLatLng((double)end.latitude, (double)end.longtitude);
+
+            RoutingProvider rp = gmap.MapProvider as RoutingProvider;
+            MapRoute route = rp.GetRoute(startCords, endCords, false, false, (int)gmap.Zoom);
+
+            GMapRoute mRoute = new GMapRoute(route.Points);
+            {
+                mRoute.ZIndex = -1;
+            }
+            gmap.Markers.Add(mRoute);
+            gmap.ZoomAndCenterMarkers(null);
         }
     }
 }
