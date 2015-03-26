@@ -21,5 +21,10 @@ namespace KomiwojazerGoogleMaps.Algorithm
             //narazie optymalna kolejnoscia jest kolejnosc na liscie
             return Enumerable.Range(0, btsList.Count-1).ToList();
         }
+
+        public void Start()
+        {
+           
+        }
     }
 }
