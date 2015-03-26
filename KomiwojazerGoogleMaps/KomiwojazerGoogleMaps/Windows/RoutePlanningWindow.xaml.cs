@@ -25,21 +25,16 @@ namespace KomiwojazerGoogleMaps.Windows
     /// 
     public partial class RoutePlanningWindow : Window
     {
-        private List<Database.Bt> btsList;
+        private HashSet<Database.Bt> btsList;
+        List<int> visitOrder;
         private Database.LinqDatabaseConnector databaseConnection;
 
         public RoutePlanningWindow()
         {
             InitializeComponent();
 
-            btsList = new List<Database.Bt>();
+            btsList = new HashSet<Database.Bt>();
             databaseConnection = new Database.LinqDatabaseConnector();
-
-            gmap.MapProvider = GMapProviders.GoogleMap;
-            gmap.Position = getCoordinatesOfLocation("Piątek, Polska"); // geograficzny srodek Polski ;)
-            gmap.MinZoom = 0;
-            gmap.MaxZoom = 24;
-            gmap.Zoom = 6;
         }
 
         private PointLatLng getCoordinatesOfLocation(string location)
@@ -57,21 +52,52 @@ namespace KomiwojazerGoogleMaps.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             dataGridBts.ItemsSource = databaseConnection.selectAllBts();
+
+            gmap.MapProvider = GMapProviders.GoogleMap;
+            gmap.Position = getCoordinatesOfLocation("Piątek, Polska"); // geograficzny srodek Polski ;)
+            gmap.MinZoom = 0;
+            gmap.MaxZoom = 24;
+            gmap.Zoom = 6;
         }
 
         private void btnStartPlanning_Click(object sender, RoutedEventArgs e)
         {
-
+            Algorithm.TravelingSalesmanProblemSolver solver = new Algorithm.TravelingSalesmanProblemSolver(btsList);
+            solver.Start();
+            visitOrder = solver.getOptimalOrder();
         }
 
         private void buttonDeleteBtsFromList_Click(object sender, RoutedEventArgs e)
         {
-
+            if (onlyOneRowSelected(dataGridList))
+            {
+ 
+            }
         }
 
         private void buttonAddBtsToList_Click(object sender, RoutedEventArgs e)
         {
+            if (onlyOneRowSelected(dataGridBts))
+            {
+                Database.Bt bts = (Database.Bt)dataGridBts.SelectedItem;
+                btsList.Add(bts);
+                updateDataGridList();
+            }
+            else
+            {
+                MessageBox.Show("Only one row can be selected!");
+            }
+        }
 
+        private void updateDataGridList()
+        {
+            dataGridList.ItemsSource = "{Binding}";
+            dataGridList.ItemsSource = btsList;
+        }
+
+        private bool onlyOneRowSelected(DataGrid dataGrid)
+        {
+            return dataGrid.SelectedItems.Count == 1 ? true : false;
         }
     }
 }

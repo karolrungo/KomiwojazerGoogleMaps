@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Algorithm\TravelingSalesmanProblemSolver.cs" />
     <Compile Include="Algorithm\TravellingSalesmanProblemConfigurator.cs" />
     <Compile Include="Classes\BtsFinder.cs" />
     <Compile Include="DataTypes\BtsInfo.cs" />
