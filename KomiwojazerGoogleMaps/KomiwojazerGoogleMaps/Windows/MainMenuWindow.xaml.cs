@@ -49,7 +49,8 @@ namespace KomiwojazerGoogleMaps.Windows
 
         private void buttonRoutePlanning_Click(object sender, RoutedEventArgs e)
         {
-
+            Windows.RoutePlanningWindow routePlanningWindow = new RoutePlanningWindow();
+            routePlanningWindow.Show();
         }
 
         private void buttonAddWorkers_Click(object sender, RoutedEventArgs e)

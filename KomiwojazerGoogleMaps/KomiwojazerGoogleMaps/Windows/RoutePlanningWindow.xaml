@@ -1,8 +1,16 @@
-﻿<Window x:Class="KomiwojazerGoogleMaps.Windows.RoutePlanningWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="RoutePlanningWindow" Height="300" Width="300">
+        xmlns:WindowsPresentation="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation" x:Class="KomiwojazerGoogleMaps.Windows.RoutePlanningWindow"
+        Title="RoutePlanningWindow" Height="857" Width="979" Loaded="Window_Loaded">
     <Grid>
-        
+        <DataGrid x:Name="dataGridBts" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Height="244" Width="331"/>
+        <Button x:Name="buttonAddBtsToList" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="458,51,0,0" VerticalAlignment="Top" Width="33" Click="buttonAddBtsToList_Click"/>
+        <Button x:Name="buttonDeleteBtsFromList" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="458,92,0,0" VerticalAlignment="Top" Width="33" Click="buttonDeleteBtsFromList_Click"/>
+        <Button x:Name="btnStartPlanning" Content="Start&#xD;&#xA;planning!" HorizontalAlignment="Left" Margin="436,130,0,0" VerticalAlignment="Top" Width="75" Height="43" Click="btnStartPlanning_Click"/>
+        <DataGrid x:Name="dataGridList" HorizontalAlignment="Left" Margin="617,10,0,0" VerticalAlignment="Top" Height="244" Width="309"/>
+
+        <WindowsPresentation:GMapControl x:Name="gmap" HorizontalAlignment="Left" Height="534" Margin="17,270,0,0" VerticalAlignment="Top" Width="919"/>
+
     </Grid>
 </Window>

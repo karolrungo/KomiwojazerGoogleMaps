@@ -42,6 +42,15 @@ namespace KomiwojazerGoogleMaps.Database
             bts.latitude = latitude;
             bts.longtitude = longitude;
 
+            if (location == "Sosnowiec, Poland")
+            {
+                throw new Exception("Nie możesz pojechać do Sosnowca! ;)");
+            }
+            if (location == "Radom, Poland")
+            {
+                throw new Exception("Nie bądż taki chytry! Nie jedź tam! ;)");
+            }
+
             if (btsNotInDatabase(location, latitude, longitude))
             {
                 dataContext.Bts.InsertOnSubmit(bts);
