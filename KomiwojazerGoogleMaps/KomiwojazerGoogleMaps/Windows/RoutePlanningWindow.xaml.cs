@@ -27,6 +27,7 @@ namespace KomiwojazerGoogleMaps.Windows
     {
         private HashSet<Database.Bt> btsList;
         List<int> visitOrder;
+        double visitOrderDistance = 0.0;
         private Database.LinqDatabaseConnector databaseConnection;
 
         public RoutePlanningWindow()
@@ -65,13 +66,25 @@ namespace KomiwojazerGoogleMaps.Windows
 
         private void btnStartPlanning_Click(object sender, RoutedEventArgs e)
         {
-            Algorithm.TravelingSalesmanProblemSolver solver = new Algorithm.TravelingSalesmanProblemSolver(btsList);
+            //Algorithm.TravelingSalesmanProblemSolver solver = new Algorithm.TravelingSalesmanProblemSolver(btsList);
             try
             {
-                solver.Start();
-                visitOrder = solver.getOptimalOrder();
-                drawOptimalRouteOnMap();
-                MessageBox.Show(generateOptimalListString());
+                //solver.Start();
+                //visitOrder = solver.getOptimalOrder();
+                var algorithmResult = Algorithm.TravelingSalesmanProblemSolver.solve(btsList.ToList());
+                if (Algorithm.TravelingSalesmanProblemSolver.Result.Success == algorithmResult)
+                {
+                    visitOrder = Algorithm.TravelingSalesmanProblemSolver.getOptimalRoute();
+                    visitOrderDistance = Algorithm.TravelingSalesmanProblemSolver.getOptimalRouteDistance();
+                    drawOptimalRouteOnMap();
+                    MessageBox.Show(generateOptimalListString());
+                }
+                else
+                {
+                    var errorCode = (Algorithm.TravelingSalesmanProblemSolver.Result.GoogleConnectionError == algorithmResult) ? "Google Connection" : "Not Found Hamiltonian Cycle";
+                    var errorMessage = "Algorithm failed. Error code: " + errorCode + ".";
+                    MessageBox.Show(errorMessage);
+                }
             }
             catch (Exception ex)
             {
@@ -83,11 +96,13 @@ namespace KomiwojazerGoogleMaps.Windows
         {
             StringBuilder sb = new StringBuilder();
 
-            for (int i = 0; i < btsList.Count; i++)
+            for (int i = 0; i < visitOrder.Count; i++)
             {
                 sb.Append(btsList.ElementAt(visitOrder[i]).cityGoogleString);
                 sb.Append(Environment.NewLine);
             }
+
+            sb.Append("Distance: " + visitOrderDistance.ToString() + " km.");
 
             return sb.ToString();
         }
@@ -133,7 +148,7 @@ namespace KomiwojazerGoogleMaps.Windows
 
         private void drawOptimalRouteOnMap()
         {
-            if (btsList.Count != visitOrder.Count)
+            if (btsList.Count != (visitOrder.Count - 1))
             {
                 throw new Exception("Optimal path does not contain all locations");
             }
@@ -143,7 +158,7 @@ namespace KomiwojazerGoogleMaps.Windows
             Database.Bt start;
             Database.Bt end;
 
-            for (int i = 0; i < btsList.Count-1; i++)
+            for (int i = 0; i < btsList.Count; i++)
             {
                 start = btsList.ElementAt(visitOrder[i]);
                 end = btsList.ElementAt(visitOrder[i+1]);

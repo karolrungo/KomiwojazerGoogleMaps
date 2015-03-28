@@ -8,7 +8,7 @@
         <DataGrid x:Name="dataGridFoundBTS" HorizontalAlignment="Left" Margin="29,231,0,0" VerticalAlignment="Top" Height="145" Width="501"/>
         <TextBox x:Name="textBoxCity" HorizontalAlignment="Left" Height="23" Margin="67,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
         <Button x:Name="buttonDeleteBTS" Content="Delete &#xD;&#xA;selected BTS" HorizontalAlignment="Left" Margin="549,70,0,0" VerticalAlignment="Top" Width="85" Height="42" Click="buttonDeleteBTS_Click"/>
-        <Button x:Name="buttonAddBTS" Content="Add locaion&#xD;&#xA;to database" HorizontalAlignment="Left" Margin="549,265,0,0" VerticalAlignment="Top" Width="85" Height="42" Click="buttonAddBTS_Click"/>
+        <Button x:Name="buttonAddBTS" Content="Add location&#xA;to database" HorizontalAlignment="Left" Margin="549,265,0,0" VerticalAlignment="Top" Width="85" Height="42" Click="buttonAddBTS_Click"/>
         <Button x:Name="buttonBTS_Search" Content="Search for location" HorizontalAlignment="Left" Margin="283,203,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.4,0.455" Click="buttonBTS_Search_Click"/>
 
     </Grid>
