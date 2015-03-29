@@ -1,15 +1,16 @@
 ﻿<Window x:Class="KomiwojazerGoogleMaps.Windows.WorkersSettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WorkersSettings" Height="327" Width="638" Loaded="Window_Loaded">
+        Title="WorkersSettings" Height="449.78" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid Margin="0,0,0,-43">
-        <DataGrid x:Name="dataGridUsersInDatabase" HorizontalAlignment="Left" Margin="20,19,0,0" VerticalAlignment="Top" Height="119" Width="385" IsSynchronizedWithCurrentItem="True"/>
-        <Label x:Name="labelLogin1" Content="login:" HorizontalAlignment="Left" Margin="44,159,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelLogin" Content="password:" HorizontalAlignment="Left" Margin="20,201,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkBoxIsAdmin" Content="is admin" HorizontalAlignment="Left" Margin="30,243,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="23" Margin="88,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBoxPassword" HorizontalAlignment="Left" Height="23" Margin="88,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnDeleteUser" Content="Delete selected user" HorizontalAlignment="Left" Margin="425,53,0,0" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.5,0.5" Height="35" Click="btnDeleteUser_Click">
+        <Image Margin="244,165,10,55.78" Source="Workers.jpg" Stretch="Fill"/>
+        <DataGrid x:Name="dataGridUsersInDatabase" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="150" Width="500" IsSynchronizedWithCurrentItem="True" TabIndex="2147483641"/>
+        <Label x:Name="labelLogin1" Content="Login" HorizontalAlignment="Left" Margin="30,165,0,0" VerticalAlignment="Top" Width="40" Height="30"/>
+        <Label x:Name="labelLogin" Content="Password" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Width="70" Height="30"/>
+        <CheckBox x:Name="checkBoxIsAdmin" Content="Is admin?" HorizontalAlignment="Left" Margin="85,235,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxLogin" HorizontalAlignment="Left" Height="30" Margin="85,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="textBoxPassword" HorizontalAlignment="Left" Height="30" Margin="85,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="btnDeleteUser" Content="Delete selected user" HorizontalAlignment="Left" Margin="520,10,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.5,0.5" Height="30" Click="btnDeleteUser_Click" Background="Red">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -19,7 +20,7 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Button x:Name="btnAddUser" Content="Add user" HorizontalAlignment="Left" Margin="249,174,0,0" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.5,0.5" Height="35" Click="btnAddUser_Click">
+        <Button x:Name="btnAddUser" Content="Add user" HorizontalAlignment="Left" Margin="85,260,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.5,0.5" Height="30" Click="btnAddUser_Click" Background="#FF13D600">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

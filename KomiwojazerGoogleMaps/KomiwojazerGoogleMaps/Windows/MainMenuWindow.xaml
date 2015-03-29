@@ -1,11 +1,41 @@
 ﻿<Window x:Class="KomiwojazerGoogleMaps.Windows.MainMenuWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainMenu" Height="358" Width="591" Closed="Window_Closed">
+        Title="MainMenu" Height="269" Width="480" Closed="Window_Closed" ResizeMode="NoResize">
     <Grid>
-        <Button x:Name="buttonAddBTS" Content="BTS Settings" HorizontalAlignment="Left" Margin="47,43,0,0" VerticalAlignment="Top" Width="104" Height="55" Click="buttonAddBTS_Click" RenderTransformOrigin="0.5,2.055"/>
-        <Button x:Name="buttonRoutePlanning" Content="Route planning" HorizontalAlignment="Left" Margin="187,43,0,0" VerticalAlignment="Top" Width="104" Height="55" Click="buttonRoutePlanning_Click" RenderTransformOrigin="0.5,2.055"/>
-        <Button x:Name="buttonAddPeople" Content="Add workers &#xD;&#xA;to database" HorizontalAlignment="Left" Margin="47,120,0,0" VerticalAlignment="Top" Width="104" Height="57" Click="buttonAddWorkers_Click" RenderTransformOrigin="0.5,2.055"/>
+        <Button x:Name="buttonAddBTS" Content="BTS Settings" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Height="50" Click="buttonAddBTS_Click" RenderTransformOrigin="0.5,2.055">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFFF5961" Offset="0.616"/>
+        			<GradientStop Color="#FFCDCDCD" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Button x:Name="buttonRoutePlanning" Content="Route planning" HorizontalAlignment="Left" Margin="190,10,0,0" VerticalAlignment="Top" Width="100" Height="50" Click="buttonRoutePlanning_Click" RenderTransformOrigin="0.5,2.055">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="White" Offset="0.5"/>
+        			<GradientStop Color="#FF004C78" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Button x:Name="buttonAddPeople" Content="Add workers &#xD;&#xA;to database" HorizontalAlignment="Left" Margin="364,10,0,0" VerticalAlignment="Top" Width="100" Height="50" Click="buttonAddWorkers_Click" RenderTransformOrigin="0.5,2.055">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FF26DA09" Offset="0.5"/>
+        			<GradientStop Color="#FFCDCDCD" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Image Margin="190,91,184,50" Source="Route.jpg" Stretch="Fill" Height="100" Width="100"/>
+        <Image Margin="10,91,334.5,53" Source="Signals.jpeg" Stretch="Fill" Height="97" Width="129.5"/>
+        <Image Margin="364,91,10,50" Source="Worker.jpeg" Stretch="Fill" Width="100" Height="100"/>
 
     </Grid>
 </Window>
