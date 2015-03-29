@@ -1,0 +1,20 @@
+\contentsline {chapter}{\numberline {1}Wst\IeC {\k e}p}{2}{chapter.1}
+\contentsline {section}{\numberline {1.1}Przedstawienie problemu}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Problem komiwoja\IeC {\.z}era}{2}{section.1.2}
+\contentsline {chapter}{\numberline {2}Zastosowane narz\IeC {\k e}dzia, oprogramowanie i algorytmy}{4}{chapter.2}
+\contentsline {section}{\numberline {2.1}Microsoft Visual Studio 2013}{4}{section.2.1}
+\contentsline {section}{\numberline {2.2}J\IeC {\k e}zyk C Sharp i platforma .NET}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}SQL Server Management Studio 2008}{5}{section.2.3}
+\contentsline {section}{\numberline {2.4}Technologia LINQ}{5}{section.2.4}
+\contentsline {section}{\numberline {2.5}Microsoft Blend}{6}{section.2.5}
+\contentsline {section}{\numberline {2.6}GMap.NET}{6}{section.2.6}
+\contentsline {section}{\numberline {2.7}Algorytm}{6}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Przedstawienie problemu na grafach}{6}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}Algorytm rozwi\IeC {\k a}zuj\IeC {\k a}cy problem komiwoja\IeC {\.z}era}{8}{subsection.2.7.2}
+\contentsline {chapter}{\numberline {3}Opis aplikacji}{10}{chapter.3}
+\contentsline {section}{\numberline {3.1}Baza danych}{10}{section.3.1}
+\contentsline {section}{\numberline {3.2}Okna aplikacji}{11}{section.3.2}
+\contentsline {chapter}{\numberline {4}Prezentacja dzia\IeC {\l }ania programu}{14}{chapter.4}
+\contentsline {chapter}{\numberline {5}Zako\IeC {\'n}czenie}{24}{chapter.5}
+\contentsline {chapter}{Bibliografia}{25}{section*.2}
+\contentsline {chapter}{Spis rysunk\IeC {\'o}w}{26}{section*.4}
